@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Cake.LongPath.Module</id>
-    <version>0.0.1.0-alpha</version>
+    <version>0.0.2.0-alpha</version>
     <authors>Mattias Karlsson</authors>
     <owners>Mattias Karlsson</owners>
     <licenseUrl>https://github.com/cake-build/cake/blob/develop/LICENSE</licenseUrl>

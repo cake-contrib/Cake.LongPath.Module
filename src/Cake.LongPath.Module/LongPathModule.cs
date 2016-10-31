@@ -10,7 +10,7 @@ namespace Cake.LongPath.Module
 {
     public class LongPathModule : ICakeModule
     {
-        public void Register(ICakeContainerRegistry registry)
+        public void Register(ICakeContainerRegistrar registry)
         {
             if (registry == null)
             {
