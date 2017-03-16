@@ -38,6 +38,15 @@ namespace Cake.LongPath.Module
         }
 
         /// <summary>
+        /// Moves the directory to the specified destination path.
+        /// </summary>
+        /// <param name="destination">The destination path.</param>
+        public void Move(DirectoryPath destination)
+        {
+            Directory.MoveTo(destination.FullPath);
+        }
+
+        /// <summary>
         /// Deletes the directory.
         /// </summary>
         /// <param name="recursive">Will perform a recursive delete if set to <c>true</c>.</param>
@@ -86,6 +95,17 @@ namespace Cake.LongPath.Module
             var option = scope == SearchScope.Current ? SearchOption.TopDirectoryOnly : SearchOption.AllDirectories;
             return Directory.GetFiles(filter, option)
                 .Select(fileInfo => new LongPathFile(fileInfo));
+        }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            return this.Path.ToString();
         }
 
         public LongPathDirectory(DirectoryPath path)
