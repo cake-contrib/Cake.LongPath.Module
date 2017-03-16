@@ -16,9 +16,9 @@
     <tags>Cake Script Build</tags>
   </metadata>
   <files>
-    <file src="Cake.LongPath.Module.dll" />
-    <file src="Cake.LongPath.Module.xml" />
-    <file src="Cake.LongPath.Module.pdb" />
-    <file src="Pri.LongPath.dll" />
+    <file src="Cake.LongPath.Module.dll" target="lib\net45" />
+    <file src="Cake.LongPath.Module.xml" target="lib\net45" />
+    <file src="Cake.LongPath.Module.pdb" target="lib\net45" />
+    <file src="Pri.LongPath.dll" target="lib\net45" />
   </files>
 </package>
