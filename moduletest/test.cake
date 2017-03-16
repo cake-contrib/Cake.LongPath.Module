@@ -7,7 +7,9 @@ DirectoryPath   testPath,
                 binPath,
                 debugPath,
                 objPath,
-                node_modulesPath;
+                node_modulesPath,
+                moveSourcePath,
+                moveDestPath;
 
 FilePath      solutionFile;
 FilePath[]    debugBinFiles,
@@ -29,6 +31,8 @@ Setup(
     debugPath = binPath.Combine("debug");
     objPath = testPath.Combine("obj");
     node_modulesPath = testPath.Combine("node_modules");
+    moveSourcePath = testPath.Combine("moveSource");
+    moveDestPath = testPath.Combine("moveDest");
   });
 
 Teardown(context=>{
@@ -42,6 +46,8 @@ Task("Create-Directory-Structure")
       EnsureDirectoryExists(debugPath);
       EnsureDirectoryExists(objPath);
       EnsureDirectoryExists(node_modulesPath);
+      EnsureDirectoryExists(moveSourcePath);
+      EnsureDirectoryExists(moveDestPath);
 });
 
 Task("Create-Dummy-Test-Files")
@@ -50,6 +56,9 @@ Task("Create-Dummy-Test-Files")
         solutionFile = CreateRandomDataFile(Context, testPath.CombineWithFilePath("test.sln"));
         debugBinFiles = CreateRangeOfRandomDataFiles(Context, debugPath);
         objFiles = CreateRangeOfRandomDataFiles(Context, objPath);
+
+        CreateRandomDataFile(Context, moveSourcePath.CombineWithFilePath("marker.txt"));
+
         Information("DebugBinFiles created: {0}", debugBinFiles.Length);
         Information("ObjFiles created: {0}", objFiles.Length);
   });
@@ -100,11 +109,26 @@ Task("Clean-Directories")
       }
   });
 
+Task("Move-Folder")
+  .Does(() => {
+      var source = Context.FileSystem.GetDirectory(moveSourcePath);
+      var target = moveDestPath.Combine("target");
+      
+      Information("Moving {0} to {1}", source, target);
+      source.Move(target);
+      
+      if(!FileExists(target.CombineWithFilePath("marker.txt")))
+      {
+        throw new Exception("Folder not moved correctly");
+      }
+  });
+
 Task("Default")
   .IsDependentOn("Create-Directory-Structure")
   .IsDependentOn("Create-Dummy-Test-Files")
   .IsDependentOn("Create-100-Levels-Of-Sub-node_modules")
   .IsDependentOn("Get-Solution-Files")
+  .IsDependentOn("Move-Folder")
   .IsDependentOn("Clean-Directories")
   .Does(()=>{
     Information("Done");
