@@ -25,6 +25,15 @@ namespace Cake.LongPath.Module
         public long Length => File.Length;
 
         /// <summary>
+        /// Gets or sets the attributes of a file.
+        /// </summary>
+        public FileAttributes Attributes
+        {
+            get  => File.Attributes;
+            set => File.Attributes = value;
+        }
+
+        /// <summary>
         /// Gets the path to the entry.
         /// </summary>
         /// <value>The path.</value>
