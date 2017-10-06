@@ -7,7 +7,7 @@
     <owners>Mattias Karlsson</owners>
     <licenseUrl>https://github.com/cake-build/cake/blob/develop/LICENSE</licenseUrl>
     <projectUrl>https://github.com/cake-build/cake</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-medium.png</iconUrl>
+    <iconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>The Cake long path module.</description>
     <summary>This enables long path support for Cake on Windows using the Pri.LongPath library.</summary>
@@ -16,9 +16,9 @@
     <tags>Cake Script Build</tags>
   </metadata>
   <files>
-    <file src="Cake.LongPath.Module.dll" target="lib\net45" />
-    <file src="Cake.LongPath.Module.xml" target="lib\net45" />
-    <file src="Cake.LongPath.Module.pdb" target="lib\net45" />
-    <file src="Pri.LongPath.dll" target="lib\net45" />
+    <file src="Cake.LongPath.Module.dll" target="lib\net46" />
+    <file src="Cake.LongPath.Module.xml" target="lib\net46" />
+    <file src="Cake.LongPath.Module.pdb" target="lib\net46" />
+    <file src="Pri.LongPath.dll" target="lib\net46" />
   </files>
 </package>
