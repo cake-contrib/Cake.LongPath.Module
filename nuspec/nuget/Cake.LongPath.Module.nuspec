@@ -7,7 +7,7 @@
     <owners>Mattias Karlsson</owners>
     <licenseUrl>https://github.com/cake-build/cake/blob/develop/LICENSE</licenseUrl>
     <projectUrl>https://github.com/cake-build/cake</projectUrl>
-    <iconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
+    <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>The Cake long path module.</description>
     <summary>This enables long path support for Cake on Windows using the Pri.LongPath library.</summary>
