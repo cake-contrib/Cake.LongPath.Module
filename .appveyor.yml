@@ -26,3 +26,4 @@ branches:
 cache:
 - src\packages -> src\**\packages.config
 - tools -> setup.cake
+- tools -> tools\packages.config
