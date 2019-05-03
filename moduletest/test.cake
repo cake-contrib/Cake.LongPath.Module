@@ -19,11 +19,14 @@ Setup(
   context=>{
     file = Context.FileSystem.GetFile("test.cake");
     directory = Context.FileSystem.GetDirectory("tools");
+    var fileSystemType = Context.FileSystem.GetType();
+
     Information(
-        "IFileSystem: {0}\r\n\tIFile: {1}\r\n\tIDirectory: {2}",
-        Context.FileSystem.GetType(),
+        "IFileSystem: {0}\r\n\tIFile: {1}\r\n\tIDirectory: {2}\r\n\tAssembly: {3}",
+        fileSystemType,
         file.GetType(),
-        directory.GetType()
+        directory.GetType(),
+        fileSystemType.Assembly
         );
 
     testPath = Directory("testpath");
@@ -36,7 +39,11 @@ Setup(
   });
 
 Teardown(context=>{
-  DeleteDirectory(testPath, recursive:true);
+   DeleteDirectory(testPath,
+            new DeleteDirectorySettings {
+                Recursive = true,
+                Force = true
+            });
   });
 
 Task("Create-Directory-Structure")
@@ -113,10 +120,10 @@ Task("Move-Folder")
   .Does(() => {
       var source = Context.FileSystem.GetDirectory(moveSourcePath);
       var target = moveDestPath.Combine("target");
-      
+
       Information("Moving {0} to {1}", source, target);
       source.Move(target);
-      
+
       if(!FileExists(target.CombineWithFilePath("marker.txt")))
       {
         throw new Exception("Folder not moved correctly");

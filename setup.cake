@@ -19,4 +19,32 @@ ToolSettings.SetToolSettings(context: Context,
                             testCoverageExcludeByAttribute: "*.ExcludeFromCodeCoverage*",
                             testCoverageExcludeByFile: "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs");
 
+Task("Integration-Tests")
+    .IsDependentOn("Build")
+    .IsDependeeOf("Test")
+    .Does(()=> {
+
+    var moduleTestPath = MakeAbsolute(Directory("moduletest"));
+    var moduleToolsPath = moduleTestPath.Combine("tools");
+    var moduleModulesPath = moduleToolsPath.Combine("modules").Combine("Cake.LongPath.Module");
+    var testCakePath = moduleTestPath.CombineWithFilePath("test.cake");
+    var longPathModulePath = BuildParameters.Paths.Directories.PublishedLibraries.Combine("Cake.LongPath.Module");
+
+    if (DirectoryExists(moduleToolsPath))
+    {
+        DeleteDirectory(moduleToolsPath,
+            new DeleteDirectorySettings {
+                Recursive = true,
+                Force = true
+            });
+    }
+
+    EnsureDirectoryExists(moduleToolsPath);
+    EnsureDirectoryExists(moduleModulesPath);
+
+    CopyDirectory(longPathModulePath, moduleModulesPath);
+
+    CakeExecuteScript(testCakePath);
+});
+
 Build.Run();
