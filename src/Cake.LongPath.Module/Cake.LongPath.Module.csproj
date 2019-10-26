@@ -64,14 +64,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>IF NOT EXIST "..\..\..\..\moduletest\tools" (md "..\..\..\..\moduletest\tools")
-IF NOT EXIST "..\..\..\..\moduletest\tools\modules" (md "..\..\..\..\moduletest\tools\modules")
-IF NOT EXIST "..\..\..\..\moduletest\tools\nuget.exe" (@powershell -NoProfile -ExecutionPolicy Bypass -Command "(New-Object System.Net.WebClient).DownloadFile('https://dist.nuget.org/win-x86-commandline/latest/nuget.exe','..\..\..\..\moduletest\tools/nuget.exe')")
-IF NOT EXIST "..\..\..\..\moduletest\tools\modules\$(TargetName)" (md "..\..\..\..\moduletest\tools\modules\$(TargetName)")
-XCOPY /Y "Pri.LongPath.*" "..\..\..\..\moduletest\tools\modules\$(TargetName)"
-XCOPY /Y "$(TargetName).*" "..\..\..\..\moduletest\tools\modules\$(TargetName)"
-
-IF NOT EXIST "Cake" (..\..\..\..\moduletest\tools\nuget.exe install Cake -ExcludeVersion -Source https://www.nuget.org/api/v2/)</PostBuildEvent>
+    <PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
