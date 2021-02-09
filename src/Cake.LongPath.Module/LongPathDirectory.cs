@@ -26,22 +26,7 @@ namespace Cake.LongPath.Module
         /// <value>The path.</value>
         Path IFileSystemInfo.Path => Path;
 
-        public bool Exists
-        {
-            get
-            {
-                // Workaround until https://github.com/peteraritchie/LongPath/issues/82 is fixed
-                try
-                {
-                    return Directory.Exists;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-        }
-
+        public bool Exists => Directory.Exists;
         public bool Hidden => (Directory.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden;
 
         /// <summary>
