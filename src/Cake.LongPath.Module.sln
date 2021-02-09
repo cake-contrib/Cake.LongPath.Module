@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 16
+VisualStudioVersion = 16.9.0.63002
+MinimumVisualStudioVersion = 16.0.0.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.LongPath.Module", "Cake.LongPath.Module\Cake.LongPath.Module.csproj", "{2B33108E-ABA1-49E5-B96E-7295088E629C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3580454D-AC5B-450C-B01B-DA8C74B525EF}"
