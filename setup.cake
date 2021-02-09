@@ -1,4 +1,4 @@
-#load "nuget:?package=Cake.Recipe&version=1.0.0"
+#load "nuget:?package=Cake.Recipe&version=1.0.0"#load "nuget:?package=Cake.Recipe&version=1.1.2"
 
 Environment.SetVariableNames();
 
@@ -17,7 +17,9 @@ ToolSettings.SetToolSettings(context: Context,
                                 BuildParameters.RootDirectoryPath + "/src/Cake.Longpath.Module.Tests/**/*.cs" },
                             testCoverageFilter: "+[*]* -[xunit.*]* -[Cake.Core]* -[Cake.Testing]* -[*.Tests]* ",
                             testCoverageExcludeByAttribute: "*.ExcludeFromCodeCoverage*",
-                            testCoverageExcludeByFile: "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs");
+                            testCoverageExcludeByFile: "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs",
+                            buildMSBuildToolVersion: MSBuildToolVersion.VS2019
+                            );
 
 Task("Integration-Tests")
     .IsDependentOn("Build")
