@@ -12,7 +12,8 @@
     <description>The Cake long path module.</description>
     <summary>This enables long path support for Cake on Windows using the Pri.LongPath library.</summary>
     <releaseNotes>Initial alpha Release.</releaseNotes>
-    <copyright>Copyright (c) .NET Foundation and Contributors</copyright>
+    <copyright>Copyright (c) Mattias Karlsson</copyright>
+    <repository type="git" url="https://github.com/cake-contrib/Cake.LongPath.Module.git"/>
     <tags>Cake Script Build</tags>
   </metadata>
   <files>
