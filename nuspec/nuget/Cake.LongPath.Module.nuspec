@@ -5,8 +5,8 @@
     <version>0.0.2.0-alpha</version>
     <authors>Mattias Karlsson</authors>
     <owners>Mattias Karlsson</owners>
-    <licenseUrl>https://github.com/cake-build/cake/blob/develop/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/cake-build/cake</projectUrl>
+    <license type="expression">MIT</license>
+    <projectUrl>https://cakebuild.net/extensions/cake-longpath-module</projectUrl>
     <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>The Cake long path module.</description>
