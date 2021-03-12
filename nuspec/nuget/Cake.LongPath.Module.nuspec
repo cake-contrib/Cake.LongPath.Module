@@ -5,15 +5,16 @@
     <version>0.0.2.0-alpha</version>
     <authors>Mattias Karlsson</authors>
     <owners>Mattias Karlsson</owners>
-    <licenseUrl>https://github.com/cake-build/cake/blob/develop/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/cake-build/cake</projectUrl>
+    <license type="expression">MIT</license>
+    <projectUrl>https://cakebuild.net/extensions/cake-longpath-module</projectUrl>
     <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>The Cake long path module.</description>
     <summary>This enables long path support for Cake on Windows using the Pri.LongPath library.</summary>
     <releaseNotes>Initial alpha Release.</releaseNotes>
-    <copyright>Copyright (c) .NET Foundation and Contributors</copyright>
-    <tags>Cake Script Build</tags>
+    <copyright>Copyright (c) Mattias Karlsson</copyright>
+    <repository type="git" url="https://github.com/cake-contrib/Cake.LongPath.Module.git"/>
+    <tags>Cake, Script, Build, cake-module</tags>
   </metadata>
   <files>
     <file src="Cake.LongPath.Module.dll" target="lib\net46" />
