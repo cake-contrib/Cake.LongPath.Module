@@ -1,4 +1,6 @@
-#load "nuget:?package=Cake.Recipe&version=1.0.0"#load "nuget:?package=Cake.Recipe&version=1.1.2"
+#module nuget:?package=Cake.DotNetTool.Module&version=1.0.1
+#tool dotnet:?package=DPI&version=2021.3.11.25
+#load "nuget:?package=Cake.Recipe&version=1.1.2"
 
 Environment.SetVariableNames();
 
@@ -20,6 +22,41 @@ ToolSettings.SetToolSettings(context: Context,
                             testCoverageExcludeByFile: "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs",
                             buildMSBuildToolVersion: MSBuildToolVersion.VS2019
                             );
+
+Task("DPI")
+    .IsDependentOn("Restore")
+    .IsDependeeOf("Build")
+    .Does(
+        context =>
+{
+    var result = context.StartProcess(
+        context.Tools.Resolve("dpi") ?? context.Tools.Resolve("dpi.exe"),
+        new ProcessSettings {
+            Arguments = new ProcessArgumentBuilder()
+                                                .Append("nuget")
+                                                .Append("--silent")
+                                                .AppendSwitchQuoted("--output", "table")
+                                                .Append(
+                                                    (
+                                                        string.IsNullOrWhiteSpace(context.EnvironmentVariable("SYSTEM_PULLREQUEST_PULLREQUESTID")) //AzurePipelines.Environment.PullRequest.IsPullRequest
+                                                        &&
+                                                        !string.IsNullOrWhiteSpace(context.EnvironmentVariable("NuGetReportSettings_SharedKey"))
+                                                        &&
+                                                        !string.IsNullOrWhiteSpace(context.EnvironmentVariable("NuGetReportSettings_WorkspaceId"))
+                                                    )
+                                                        ? "report"
+                                                        : "analyze"
+                                                    )
+                                                .AppendSwitchQuoted("--buildversion", BuildParameters.Version.SemVersion)
+        }
+    );
+
+    if (result != 0)
+    {
+        throw new Exception($"Failed to execute DPI ({result}");
+    }
+});
+
 
 Task("Integration-Tests")
     .IsDependentOn("Build")
@@ -46,7 +83,17 @@ Task("Integration-Tests")
 
     CopyDirectory(longPathModulePath, moduleModulesPath);
 
-    CakeExecuteScript(testCakePath);
+    CakeExecuteScript(
+        testCakePath,
+        new CakeSettings
+        {
+            EnvironmentVariables =
+            {
+                { "CAKE_PATHS_TOOLS", moduleToolsPath.FullPath },
+                { "CAKE_PATHS_ADDINS", moduleToolsPath.Combine("Addins").FullPath },
+                { "CAKE_PATHS_MODULES", moduleToolsPath.Combine("Modules").FullPath }
+            }
+        });
 });
 
 Build.Run();
